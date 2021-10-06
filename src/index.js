@@ -26,7 +26,8 @@ function newDogContainer(imageUrl){
 
 
     function newListofLi(breeds){
-        return breeds.forEach(everybreed=>{
+        return breeds.forEach((everybreed)=>{
+            //console.log(everybreed)
             const ul=document.querySelector('#dog-breeds') 
             const li=document.createElement('li')
              li.innerText=everybreed
@@ -34,8 +35,7 @@ function newDogContainer(imageUrl){
              ul.append(li)
              li.addEventListener('click',function(e){
                 e.target.style.color='red'
-                      
-                   })
+             })          
         })
 
     }
@@ -48,28 +48,27 @@ function newDogContainer(imageUrl){
         //console.log(breeds)
         newListofLi(breeds)
 
-
     })
 
     
     
     function handeChange(e){
        const letter=e.target.value
-        //console.log(breeds)
+        //console.log(letter)
         
        const filteredBreeds= breeds.filter(breed=>breed.startsWith(letter))
-       //console.log(filteredBreeds)
-       const ul=document.querySelector('#dog-breeds') 
-       filteredBreeds.forEach(everybreed=>{
-        const li=document.createElement('li')
-         li.innerText=everybreed
-         ul.appendChild(li)
+       console.log(filteredBreeds)
+        let dogUL = document.querySelector("#dog-breeds")
+        dogUL.innerHTML = ""
+        filteredBreeds.map(everybreed=>{
+        dogUL.innerHTML += `<li >${everybreed}!</li>`
+         
        })
+      
       
     }
     const dropdown=document.querySelector('#breed-dropdown')
+    //console.log(dropdown)
     dropdown.addEventListener('change',handeChange)
-
-
 
     })
